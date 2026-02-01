@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Park Wanderer</title>
+
+<!-- 開發期：動態載入 CSS，避免舊值快取 -->
+<script>
+  (function () {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'style.css?dev=' + Date.now();
+    document.head.appendChild(link);
+  })();
+</script>
+
+</head>
+
+<body>
+
+<canvas id="gameCanvas"></canvas>
+
+<div class="controls hidden" id="controls">
+    <div id="leftBtn" class="btn">◀</div>
+    <div id="rightBtn" class="btn">▶</div>
+</div>
+
+<script>
+  const script = document.createElement('script');
+  script.src = 'main.js?dev=' + Date.now();
+  document.body.appendChild(script);
+</script>
+</body>
+</html>
