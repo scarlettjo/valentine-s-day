@@ -69,9 +69,9 @@ const parkImg = new Image();
 const boyImg = new Image();
 const me = new Image();
 
-parkImg.src = 'park.png';
-boyImg.src = 'firstboy.png';
-me.src = 'me.png';
+parkImg.src = './park.png';
+boyImg.src = './firstboy.png';
+me.src = './me.png';
 
 let loaded = 0;
 [parkImg, boyImg, me].forEach(img => {
@@ -186,7 +186,7 @@ const hit = (b) =>
 
        
         if (!hasClosedParkOnce) {
-            parkImg.src = 'temple.png';
+            parkImg.src = './temple.png';
            controls.classList.remove('hidden');
         } 
 
@@ -234,7 +234,7 @@ if (dialogState === 'temple') {
 
        
         if (!hasClosedParkOnce) {
-            parkImg.src = 'sea.jpg';
+            parkImg.src = './sea.jpg';
            controls.classList.remove('hidden');
         } 
 
