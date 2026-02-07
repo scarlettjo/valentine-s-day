@@ -31,12 +31,30 @@
       @right="onDialogRight"
     />
 
-    <!-- 控制鍵 -->
-    <Controls
-      v-if="parkVisible && !showDialog"
-      @start="moveDir = $event"
-      @stop="moveDir = 0"
-    />
+   <template>
+  <div class="controls">
+    <button
+      class="ctrl-btn"
+      @pointerdown="emit('start', -1)"
+      @pointerup="emit('stop')"
+      @pointercancel="emit('stop')"
+      @pointerleave="emit('stop')"
+    >◀</button>
+
+    <button
+      class="ctrl-btn"
+      @pointerdown="emit('start', 1)"
+      @pointerup="emit('stop')"
+      @pointercancel="emit('stop')"
+      @pointerleave="emit('stop')"
+    >▶</button>
+  </div>
+</template>
+
+<script setup>
+const emit = defineEmits(['start', 'stop'])
+</script>
+
   
 </template>
 
@@ -130,14 +148,23 @@ function onDialogRight() {
   if (dialogState.value === 'intro') {
     parkVisible.value = true
     showDialog.value = false
+    scene.value = 'park'
     dialogState.value = 'park'
     resetPlayers()
     return
   }
 
-  if (dialogState.value === 'park') scene.value = 'temple'
-  else if (dialogState.value === 'temple') scene.value = 'sea'
+  if (dialogState.value === 'park') {
+    scene.value = 'temple'
+    dialogState.value = 'temple'
+  } else if (dialogState.value === 'temple') {
+    scene.value = 'sea'
+    dialogState.value = 'sea'
+  } else if (dialogState.value === 'sea') {
+    dialogState.value = 'exit1'
+  }
 
+  // 右鍵按下先關掉對話框，讓你能移動
   showDialog.value = false
   resetPlayers()
 }

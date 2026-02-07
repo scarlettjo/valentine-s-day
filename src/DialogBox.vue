@@ -13,13 +13,16 @@
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
   state: String,
   text: String
 })
 
-const hasLeft = ['park', 'temple', 'sea'].includes($props.state)
+const hasLeft = computed(() => ['park', 'temple', 'sea'].includes(props.state))
 </script>
+
 
 <style scoped>
 .overlay {
