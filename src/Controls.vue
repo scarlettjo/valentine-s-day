@@ -27,12 +27,14 @@ const emit = defineEmits(['start','stop'])
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 22px;
+  bottom: calc(22px + env(safe-area-inset-bottom));
   display: flex;
   justify-content: space-between;
   padding: 0 22px;
   pointer-events: none;
+  z-index: 9999; 
 }
+
 .ctrl-btn{
   pointer-events: auto;
   width: 64px;

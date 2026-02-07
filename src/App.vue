@@ -109,10 +109,12 @@ const p1 = ref({ x: 0, y: 0 })
 const p2 = ref({ x: 0, y: 0 })
 
 function resetPlayers() {
-  const ground = window.innerHeight * 0.65
-  p1.value = { x: window.innerWidth * 0.2, y: ground - CHAR_H }
+  const h = window.visualViewport?.height || window.innerHeight
+  const ground = h * 0.88   // 原本 0.65 太高，改 0.88 站到更下方
+  p1.value = { x: window.innerWidth * 0.2,  y: ground - CHAR_H }
   p2.value = { x: window.innerWidth * 0.55, y: ground - CHAR_H }
 }
+
 
 const styleOf = (p) => ({
   left: p.x + 'px',
