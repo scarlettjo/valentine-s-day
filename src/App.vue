@@ -1,11 +1,10 @@
 <template>
-  <div class="app">
-    <!-- 背景 -->
-    <div
-      v-if="parkVisible"
-      class="bg"
-      :style="{ backgroundImage: `url(${currentBg})` }"
-    />
+  <div
+  class="scene"
+  :style="{ backgroundImage: `url(${currentBg})` }"
+></div>
+
+
 
     <!-- 人物 -->
     <img

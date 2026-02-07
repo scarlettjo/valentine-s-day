@@ -1,8 +1,9 @@
 <template>
-  <div class="controls">
-    <button @touchstart="$emit('start', -1)" @touchend="$emit('stop')">◀</button>
-    <button @touchstart="$emit('start', 1)" @touchend="$emit('stop')">▶</button>
-  </div>
+<div class="controls">
+  <button class="ctrl-btn">◀</button>
+  <button class="ctrl-btn">▶</button>
+</div>
+
 </template>
 
 <style scoped>
