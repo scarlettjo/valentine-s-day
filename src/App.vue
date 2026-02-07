@@ -37,7 +37,7 @@
       @start="moveDir = $event"
       @stop="moveDir = 0"
     />
-  </div>
+  
 </template>
 
 <script setup>

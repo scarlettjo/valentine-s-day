@@ -1,14 +1,15 @@
 <template>
-  <div class="overlay">
-    <div class="dialog">
-      <div class="text">{{ text }}</div>
-
-      <div class="actions">
-        <button v-if="hasLeft" @click="$emit('left')">亂按</button>
-        <button @click="$emit('right')">關閉</button>
-      </div>
-    </div>
+<div class="dialog">
+  <div class="dialog-content">
+    {{ text }}
   </div>
+
+  <div class="dialog-actions">
+    <button v-if="hasLeft" @click="$emit('left')">亂按</button>
+    <button @click="$emit('right')">關閉</button>
+  </div>
+</div>
+
 </template>
 
 <script setup>
