@@ -69,7 +69,7 @@ const DIALOG_TEXT = {
 
 const dialogText = computed(() => DIALOG_TEXT[dialogState.value])
 
-import parkBg from '@/assets/park.png'
+import parkBg from '@/assets/park.jpg'
 import templeBg from '@/assets/temple.png'
 import seaBg from '@/assets/sea.jpg'
 
