@@ -1,7 +1,7 @@
 const { createApp, ref } = Vue;
 
-import DialogBox from './DialogBox.js';
-import Controls from './Controls.js';
+import DialogBox from './DialogBox.vue';
+import Controls from './Controls.vue';
 
 createApp({
   components: { DialogBox, Controls },
