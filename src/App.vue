@@ -69,17 +69,20 @@ const DIALOG_TEXT = {
 
 const dialogText = computed(() => DIALOG_TEXT[dialogState.value])
 
-/* ===== 背景 ===== */
+import parkBg from '@/assets/park.png'
+import templeBg from '@/assets/temple.png'
+import seaBg from '@/assets/sea.jpg'
+
 const scene = ref('park')
 const currentBg = computed(() => ({
-  park: '/park.png',
-  temple: '/temple.png',
-  sea: '/sea.jpg'
+  park: parkBg,
+  temple: templeBg,
+  sea: seaBg
 }[scene.value]))
 
 /* ===== 人物 ===== */
-const boySrc = '/firstboy.png'
-const meSrc = '/me.png'
+import boySrc from '@/assets/firstboy.png'
+import meSrc from '@/assets/me.png'
 
 const CHAR_W = 80
 const CHAR_H = 180
