@@ -65,8 +65,8 @@ import Controls from './Controls.vue'
 
 /* ===== 狀態 ===== */
 const dialogState = ref('intro')
-const showDialog = ref(true)
-const parkVisible = ref(false)
+const showDialog = ref(false)
+const parkVisible = ref(true)
 
 const DIALOG_TEXT = {
   intro: `嗨!周小寶,今天是難得的情人節,
@@ -110,9 +110,11 @@ const p2 = ref({ x: 0, y: 0 })
 
 function resetPlayers() {
   const h = window.visualViewport?.height || window.innerHeight
-  const ground = h * 0.88   // 原本 0.65 太高，改 0.88 站到更下方
-  p1.value = { x: window.innerWidth * 0.2,  y: ground - CHAR_H }
-  p2.value = { x: window.innerWidth * 0.55, y: ground - CHAR_H }
+  const ground = h * 0.95 // 越大越靠下（0.92~0.97 自己微調）
+  const y = Math.min(ground - CHAR_H, h - CHAR_H - 12)
+
+  p1.value = { x: window.innerWidth * 0.2,  y }
+  p2.value = { x: window.innerWidth * 0.55, y }
 }
 
 
@@ -179,6 +181,7 @@ function onDialogLeft() {
 
 /* ===== 啟動 ===== */
 onMounted(() => {
+  resetPlayers()
   loop()
 })
 </script>
