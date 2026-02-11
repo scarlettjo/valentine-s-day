@@ -51,8 +51,8 @@ watch(() => props.state, () => {
   z-index: 9998;
 }
 .dialog{
-  max-width: min(420px, 85vw);
-  max-height: min(520px, 70vh);   /* ✅ 手機不會爆 */
+ width: clamp(280px, 82vw, 360px);
+  max-height: min(520px, 70vh); 
   background: linear-gradient(180deg, #fff 0%, #fff7fb 100%);
   border: 2px solid rgba(1, 1, 1, 0.9);
   border-radius: 16px;
