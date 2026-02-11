@@ -132,11 +132,11 @@ const p2 = ref({ x: 0, y: 0 })
 
 function resetPlayers() {
   const h = window.visualViewport?.height || window.innerHeight
-  const ground = h * 0.97 // 更往下
+  const ground = h * 0.97
   const y = Math.min(ground - CHAR_H, h - CHAR_H - 8)
 
-  p1.value = { x: window.innerWidth * 0.2,  y }
-  p2.value = { x: window.innerWidth * 0.55, y }
+  p1.value = { x: window.innerWidth * 0.1, y }
+  p2.value = { x: window.innerWidth * 0.7, y }
 }
 
 const styleOf = (p) => ({
@@ -149,7 +149,7 @@ const styleOf = (p) => ({
 /* ===== 移動 ===== */
 const moveDir = ref(0)
 const speed = 4
-
+const canTriggerHit = ref(true)
 function loop() {
   if (!showDialog.value && parkVisible.value) {
     p1.value.x += moveDir.value * speed
@@ -159,25 +159,22 @@ function loop() {
       p1.value.x < p2.value.x + CHAR_W &&
       p1.value.x + CHAR_W > p2.value.x
 
-    if (hit) {
-      showDialog.value = true
-      dialogState.value = scene.value
-      moveDir.value = 0
-    }
+    if (hit && canTriggerHit.value) {
+  showDialog.value = true
+  dialogState.value = scene.value
+  moveDir.value = 0
+  canTriggerHit.value = false
+}
   }
   requestAnimationFrame(loop)
 }
 
 /* ===== Dialog 行為 ===== */
 function onDialogRight() {
-  if (dialogState.value === 'intro') {
-    parkVisible.value = true
-    showDialog.value = false
-    scene.value = 'park'
-    dialogState.value = 'park'
-    resetPlayers()
-    return
-  }
+  showDialog.value = false
+  canTriggerHit.value = true
+
+
 
   if (dialogState.value === 'park') {
     scene.value = 'temple'
