@@ -27,13 +27,12 @@
       @left="onDialogLeft"
       @right="onDialogRight"
     />
-
+    <div class="debug-bar">CONTROLS</div>
     <!-- 控制鍵 -->
     <Controls
-      v-if="parkVisible && !showDialog"
-      @start="moveDir = $event"
-      @stop="moveDir = 0"
-    />
+     @start="moveDir = $event"
+     @stop="moveDir = 0"
+/>
   </div>
 </template>
 
@@ -43,10 +42,10 @@ import DialogBox from './DialogBox.vue'
 import Controls from './Controls.vue'
 
 /* ===== 狀態 ===== */
-// 進站不要 Intro：直接 park + 人物 + 控制
-const dialogState = ref('park')
-const showDialog = ref(false)
-const parkVisible = ref(true)
+const dialogState = ref('intro')
+const showDialog = ref(true)
+const parkVisible = ref(false)
+
 
 const DIALOG_TEXT = {
   intro: `嗨!周小寶,今天是難得的情人節,
@@ -200,5 +199,17 @@ onBeforeUnmount(() => {
   position: absolute;
   pointer-events: none;
   z-index: 10;
+}
+.debug-bar{
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 2147483647;
+  background: #f2a7c6;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 12px;
 }
 </style>

@@ -54,7 +54,7 @@ watch(() => props.state, () => {
   width: min(420px, 92vw);
   max-height: min(520px, 70vh);   /* ✅ 手機不會爆 */
   background: linear-gradient(180deg, #fff 0%, #fff7fb 100%);
-  border: 2px solid rgba(242, 167, 198, 0.9);
+  border: 2px solid rgba(1, 1, 1, 0.9);
   border-radius: 16px;
   box-shadow: 0 18px 60px rgba(0,0,0,0.18);
   padding: 14px 14px 12px;
