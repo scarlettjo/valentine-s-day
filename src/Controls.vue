@@ -35,7 +35,7 @@ const emit = defineEmits(['start', 'stop'])
   display: flex;
   justify-content: space-between;
   padding: 0 22px;
-  z-index: 2147483647; /* ✅ 一定在最上層 */
+  z-index: 1000; /* ✅ 一定在最上層 */
 }
 
 .ctrl-btn{
