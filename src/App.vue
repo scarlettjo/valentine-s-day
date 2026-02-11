@@ -187,7 +187,7 @@ function onDialogRight() {
   } else if (dialogState.value === 'sea') {
     scene.value = 'koren'
     dialogState.value = 'koren'
-  } else if (dialogState.value === 'sea') {
+  } else if (dialogState.value === 'koren') {
     dialogState.value = 'exit1'
   }
 

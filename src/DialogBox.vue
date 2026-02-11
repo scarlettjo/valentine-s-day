@@ -10,7 +10,7 @@
       </div>
 
       <div class="actions">
-        <button v-if="hasLeft" class="btn ghost" @click="$emit('left')">返回</button>
+        <button v-if="hasLeft" class="btn ghost" @click="$emit('left')">要付出勇氣點選這個嘛!</button>
         <button class="btn primary" @click="$emit('right')">關閉</button>
       </div>
     </div>
@@ -51,7 +51,7 @@ watch(() => props.state, () => {
   z-index: 9998;
 }
 .dialog{
-  width: min(420px, 92vw);
+  width: min(420px, 85vw);
   max-height: min(520px, 70vh);   /* ✅ 手機不會爆 */
   background: linear-gradient(180deg, #fff 0%, #fff7fb 100%);
   border: 2px solid rgba(1, 1, 1, 0.9);
