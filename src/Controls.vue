@@ -2,18 +2,22 @@
   <div class="controls">
     <button
       class="ctrl-btn"
-      @pointerdown="emit('start', -1)"
-      @pointerup="emit('stop')"
-      @pointercancel="emit('stop')"
-      @pointerleave="emit('stop')"
+      @touchstart.prevent="emit('start', -1)"
+      @touchend.prevent="emit('stop')"
+      @touchcancel.prevent="emit('stop')"
+      @mousedown.prevent="emit('start', -1)"
+      @mouseup.prevent="emit('stop')"
+      @mouseleave.prevent="emit('stop')"
     >◀</button>
 
     <button
       class="ctrl-btn"
-      @pointerdown="emit('start', 1)"
-      @pointerup="emit('stop')"
-      @pointercancel="emit('stop')"
-      @pointerleave="emit('stop')"
+      @touchstart.prevent="emit('start', 1)"
+      @touchend.prevent="emit('stop')"
+      @touchcancel.prevent="emit('stop')"
+      @mousedown.prevent="emit('start', 1)"
+      @mouseup.prevent="emit('stop')"
+      @mouseleave.prevent="emit('stop')"
     >▶</button>
   </div>
 </template>
@@ -27,24 +31,23 @@ const emit = defineEmits(['start', 'stop'])
   position: fixed;
   left: 0;
   right: 0;
-  bottom: calc(64px + env(safe-area-inset-bottom));
+  bottom: calc(80px + env(safe-area-inset-bottom)); /* ✅ 往上抬，避開 Safari 工具列 */
   display: flex;
   justify-content: space-between;
   padding: 0 22px;
-  pointer-events: none;
-  z-index: 2147483647;
+  z-index: 2147483647; /* ✅ 一定在最上層 */
 }
 
 .ctrl-btn{
-  pointer-events: auto;
   width: 64px;
   height: 64px;
   border-radius: 999px;
   font-size: 24px;
-  background: rgba(255,255,255,0.35);
-  border: 2px solid rgba(255,255,255,0.75);
-  backdrop-filter: blur(6px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+  background: rgba(255,255,255,0.85); /* ✅ 不透明，肉眼一定看得到 */
+  border: 2px solid rgba(242, 167, 198, 0.9);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.22);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .ctrl-btn:active{

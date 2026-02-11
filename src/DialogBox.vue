@@ -45,24 +45,23 @@ watch(() => props.state, () => {
   inset: 0;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: 16px;
   background: rgba(255, 170, 205, 0.18);
   backdrop-filter: blur(6px);
   z-index: 9998;
 }
-
 .dialog{
-  width: min(520px, 92vw);
-  max-height: 72vh;
+  width: min(420px, 92vw);
+  max-height: min(520px, 70vh);   /* ✅ 手機不會爆 */
   background: linear-gradient(180deg, #fff 0%, #fff7fb 100%);
   border: 2px solid rgba(242, 167, 198, 0.9);
-  border-radius: 18px;
+  border-radius: 16px;
   box-shadow: 0 18px 60px rgba(0,0,0,0.18);
-  padding: 16px 16px 14px;
+  padding: 14px 14px 12px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;              /* ✅ 防止內容撐破 */
 }
-
 .header{
   display:flex;
   justify-content: flex-start;
@@ -81,10 +80,9 @@ watch(() => props.state, () => {
 
 .content{
   white-space: pre-line;
-  overflow-y: auto;
-  padding: 10px 8px 6px;
+  overflow-y: auto;              /* ✅ 內容多就捲 */
+  padding: 8px 6px 6px;
   line-height: 1.55;
-  color: #3a2a33;
   flex: 1;
 }
 
