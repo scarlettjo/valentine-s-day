@@ -131,9 +131,7 @@ const p1 = ref({ x: 0, y: 0 })
 const p2 = ref({ x: 0, y: 0 })
 
 function resetPlayers() {
-  const h = window.innerHeight
-  const y = h - CHAR_H - 20   // 固定貼底，20 可自行微調
-
+  const y = window.innerHeight - CHAR_H - 20
   p1.value = { x: window.innerWidth * 0.1, y }
   p2.value = { x: window.innerWidth * 0.7, y }
 }
@@ -241,14 +239,10 @@ onBeforeUnmount(() => {
 
 /* 背景只顯示，不吃點擊 */
 .scene{
-  position: fixed;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  pointer-events: none;
-  z-index: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
 }
-
 .char{
   position: absolute;
   pointer-events: none;
