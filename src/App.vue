@@ -58,7 +58,8 @@ const DIALOG_TEXT = {
 點擊關閉!`,
   park: `雖然當天嚇死我了，我覺得好突然所以緊張到把自己扭成一團
         當時其實想了很久，因為你剛好要當兵，我又很黏人,
-        可是我又覺得愛情就是不能猶豫!!!33
+        可是我又覺得愛情就是不能猶豫!!!
+
         如果我們遇見彼此時沒有握緊雙方的手，那我們就會走散了
         所以過了幾天就找機會跟寶寶說我的想法了
         (雖然周小寶本人很心機說想看我寫的字)
@@ -71,7 +72,9 @@ const DIALOG_TEXT = {
         然後我們就跑去洪爐地拜拜???
         前陣子才知道呂洞賓不喜歡情侶，會故意拆散
         可是我們還是交往了一年多!
-        被不喜歡情侶的神明放過一馬的感覺就是這樣嗎><
+        被不喜歡情侶的神明放過一馬的感覺就是這樣嗎
+        嘻嘻><
+
         我記得我跟你在一起前，也去了台中拜月老
         當時抽到了上上籤，說我會遇到非~常適合我的人
         我想就是周小寶吧!'`,
@@ -181,7 +184,7 @@ function onDialogRight() {
   } else if (dialogState.value === 'temple') {
     scene.value = 'sea'
     dialogState.value = 'sea'
-  } else if (dialogState.value === 'koren') {
+  } else if (dialogState.value === 'sea') {
     scene.value = 'koren'
     dialogState.value = 'koren'
   } else if (dialogState.value === 'sea') {
