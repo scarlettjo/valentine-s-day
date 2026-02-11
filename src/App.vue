@@ -170,10 +170,20 @@ function loop() {
 
 /* ===== Dialog 行為 ===== */
 function onDialogRight() {
+
+  if (dialogState.value === 'intro') {
+    parkVisible.value = true
+    showDialog.value = false
+    resetPlayers()
+    return
+  }
+
   showDialog.value = false
-  canTriggerHit.value = ref(false)
+  resetPlayers()
 
-
+  setTimeout(() => {
+    canTriggerHit.value = true
+  }, 500)
 
   if (dialogState.value === 'park') {
     scene.value = 'temple'
@@ -187,10 +197,8 @@ function onDialogRight() {
   } else if (dialogState.value === 'koren') {
     dialogState.value = 'exit1'
   }
-
-  showDialog.value = false
-  resetPlayers()
 }
+
 
 function onDialogLeft() {
   dialogState.value = 'exit1'
