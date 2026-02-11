@@ -48,7 +48,7 @@ watch(() => props.state, () => {
   padding: 16px;
   background: rgba(255, 170, 205, 0.18);
   backdrop-filter: blur(6px);
-  z-index: 9998;
+  z-index: 2147483647;
 }
 .dialog{
  width: clamp(280px, 82vw, 360px);

@@ -29,9 +29,11 @@
     />
     <div class="debug-bar">CONTROLS</div>
     <!-- 控制鍵 -->
-    <Controls
-     @start="moveDir = $event"
-     @stop="moveDir = 0"
+   <Controls
+  v-if="parkVisible && !showDialog"
+  @start="moveDir = $event"
+  @stop="moveDir = 0"
+
 />
   </div>
 </template>
