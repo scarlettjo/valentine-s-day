@@ -131,9 +131,8 @@ const p1 = ref({ x: 0, y: 0 })
 const p2 = ref({ x: 0, y: 0 })
 
 function resetPlayers() {
-  const h = window.visualViewport?.height || window.innerHeight
-  const ground = h * 0.97
-  const y = Math.min(ground - CHAR_H, h - CHAR_H - 8)
+  const h = window.innerHeight
+  const y = h - CHAR_H - 20   // 固定貼底，20 可自行微調
 
   p1.value = { x: window.innerWidth * 0.1, y }
   p2.value = { x: window.innerWidth * 0.7, y }
