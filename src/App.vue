@@ -1,10 +1,7 @@
 <template>
-  <div
-  class="scene"
-  :style="{ backgroundImage: `url(${currentBg})` }"
-></div>
-
-
+  <div class="app">
+    <!-- 背景 -->
+    <div class="scene" :style="{ backgroundImage: `url(${currentBg})` }"></div>
 
     <!-- 人物 -->
     <img
@@ -31,40 +28,23 @@
       @right="onDialogRight"
     />
 
-   <template>
-  <div class="controls">
-    <button
-      class="ctrl-btn"
-      @pointerdown="emit('start', -1)"
-      @pointerup="emit('stop')"
-      @pointercancel="emit('stop')"
-      @pointerleave="emit('stop')"
-    >◀</button>
-
-    <button
-      class="ctrl-btn"
-      @pointerdown="emit('start', 1)"
-      @pointerup="emit('stop')"
-      @pointercancel="emit('stop')"
-      @pointerleave="emit('stop')"
-    >▶</button>
+    <!-- 控制鍵 -->
+    <Controls
+      v-if="parkVisible && !showDialog"
+      @start="moveDir = $event"
+      @stop="moveDir = 0"
+    />
   </div>
 </template>
 
 <script setup>
-const emit = defineEmits(['start', 'stop'])
-</script>
-
-  
-</template>
-
-<script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import DialogBox from './DialogBox.vue'
 import Controls from './Controls.vue'
 
 /* ===== 狀態 ===== */
-const dialogState = ref('intro')
+// 進站不要 Intro：直接 park + 人物 + 控制
+const dialogState = ref('park')
 const showDialog = ref(false)
 const parkVisible = ref(true)
 
@@ -85,8 +65,9 @@ const DIALOG_TEXT = {
   exit1: `恭喜你獲得被榨乾機會乙次`
 }
 
-const dialogText = computed(() => DIALOG_TEXT[dialogState.value])
+const dialogText = computed(() => DIALOG_TEXT[dialogState.value] ?? '')
 
+/* ===== 背景 ===== */
 import parkBg from '@/assets/park.jpg'
 import templeBg from '@/assets/temple.png'
 import seaBg from '@/assets/sea.jpg'
@@ -110,13 +91,12 @@ const p2 = ref({ x: 0, y: 0 })
 
 function resetPlayers() {
   const h = window.visualViewport?.height || window.innerHeight
-  const ground = h * 0.95 // 越大越靠下（0.92~0.97 自己微調）
-  const y = Math.min(ground - CHAR_H, h - CHAR_H - 12)
+  const ground = h * 0.97 // 更往下
+  const y = Math.min(ground - CHAR_H, h - CHAR_H - 8)
 
   p1.value = { x: window.innerWidth * 0.2,  y }
   p2.value = { x: window.innerWidth * 0.55, y }
 }
-
 
 const styleOf = (p) => ({
   left: p.x + 'px',
@@ -168,64 +148,57 @@ function onDialogRight() {
     dialogState.value = 'exit1'
   }
 
-  // 右鍵按下先關掉對話框，讓你能移動
   showDialog.value = false
   resetPlayers()
 }
 
 function onDialogLeft() {
-  if (dialogState.value === 'park') {
-    dialogState.value = 'exit1'
-  }
+  if (dialogState.value === 'park') dialogState.value = 'exit1'
 }
 
-/* ===== 啟動 ===== */
+/* ===== 鍵盤（桌機用） ===== */
+function onKeyDown(e) {
+  if (showDialog.value || !parkVisible.value) return
+  if (e.key === 'ArrowLeft') moveDir.value = -1
+  if (e.key === 'ArrowRight') moveDir.value = 1
+}
+function onKeyUp(e) {
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') moveDir.value = 0
+}
+
 onMounted(() => {
   resetPlayers()
   loop()
+  window.addEventListener('keydown', onKeyDown)
+  window.addEventListener('keyup', onKeyUp)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', onKeyDown)
+  window.removeEventListener('keyup', onKeyUp)
 })
 </script>
 
 <style scoped>
-.app {
+.app{
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   position: relative;
 }
 
-.bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-}
-
-.char {
-  position: absolute;
-  pointer-events: none;
-}
-
-.scene {
+/* 背景只顯示，不吃點擊 */
+.scene{
   position: fixed;
   inset: 0;
   background-size: cover;
   background-position: center;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.character {
+.char{
   position: absolute;
-  bottom: 15%;
-  width: 80px;
+  pointer-events: none;
+  z-index: 10;
 }
-
-.me {
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.boy {
-  transform: translateX(-50%);
-}
-
 </style>

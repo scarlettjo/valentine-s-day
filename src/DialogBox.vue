@@ -32,7 +32,6 @@ const title = computed(() => {
   return map[props.state] ?? 'Message'
 })
 
-// 小彈跳
 const bounce = ref(false)
 watch(() => props.state, () => {
   bounce.value = true
@@ -49,6 +48,7 @@ watch(() => props.state, () => {
   padding: 24px;
   background: rgba(255, 170, 205, 0.18);
   backdrop-filter: blur(6px);
+  z-index: 9998;
 }
 
 .dialog{
