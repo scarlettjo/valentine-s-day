@@ -27,8 +27,7 @@
       @left="onDialogLeft"
       @right="onDialogRight"
     />
-    <div class="debug-bar">CONTROLS</div>
-    <!-- 控制鍵 -->
+       <!-- 控制鍵 -->
    <Controls
   v-if="parkVisible && !showDialog"
   @start="moveDir = $event"
@@ -256,16 +255,5 @@ onBeforeUnmount(() => {
   pointer-events: none;
   z-index: 10;
 }
-.debug-bar{
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 2147483647;
-  background: #f2a7c6;
-  color: #fff;
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-weight: 800;
-  font-size: 12px;
-}
+
 </style>
