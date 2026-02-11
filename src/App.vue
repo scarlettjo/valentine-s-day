@@ -53,14 +53,50 @@ const DIALOG_TEXT = {
 
 前陣子花了點時間在用電腦,
 就是因為這個喔!希望你不要擔心~
+(雖然因為大吵破梗了哈哈哈)
 
-點擊右下角的按鈕吧!`,
-  park: `這裡是不是很熟悉呢?
-這是寶寶跟我告白的瓶蓋公園呦!
+點擊關閉!`,
+  park: `雖然當天嚇死我了，我覺得好突然所以緊張到把自己扭成一團
+        當時其實想了很久，因為你剛好要當兵，我又很黏人,
+        可是我又覺得愛情就是不能猶豫!!!33
+        如果我們遇見彼此時沒有握緊雙方的手，那我們就會走散了
+        所以過了幾天就找機會跟寶寶說我的想法了
+        (雖然周小寶本人很心機說想看我寫的字)
 
-再點一次右下角吧!`,
-  temple: `洪爐地的故事...`,
-  sea: `海邊的回憶...`,
+
+        再點一次右下角!
+        !`,
+  temple: `這邊是我們第一次去台中後回來的地方!
+        那個時候好像沒算好時間，太晚回來
+        然後我們就跑去洪爐地拜拜???
+        前陣子才知道呂洞賓不喜歡情侶，會故意拆散
+        可是我們還是交往了一年多!
+        被不喜歡情侶的神明放過一馬的感覺就是這樣嗎><
+        我記得我跟你在一起前，也去了台中拜月老
+        當時抽到了上上籤，說我會遇到非~常適合我的人
+        我想就是周小寶吧!'`,
+  sea: `第一次見你朋友是去年的228露營
+        回程的時候去了漂亮的海邊
+        不知道是誤打誤撞還是周宏澤細心規劃
+        但到現在還是覺得愛心入口很浪漫
+        現在想想當時應該多拍一點合照
+        可惜周小寶當時沒有頭髮嘻嘻
+        那幾天只有瘋狂瑟瑟
+
+
+        呀哈`,
+  koren: `去年五月是我們第一次去韓國!!
+        那幾天真的好開心，雖然行程有點趕
+        但我覺得很充實，因為我們去了很多地方
+        最喜歡的是吃章魚!!回來後都念念不忘 吃芥末章魚解饞XD
+
+        還有寶寶準備的生日餐
+        那個杯子真的是太可愛了...!!
+        可惜當天也因為太趕,身體吃不消後來都吐出來
+        (超級難過)
+        但下次我們預留休息時間就不會有這個問題了!!
+
+        現在想想又好想跟寶寶出國喔><`,
   exit1: `恭喜你獲得被榨乾機會乙次`
 }
 
@@ -70,12 +106,14 @@ const dialogText = computed(() => DIALOG_TEXT[dialogState.value] ?? '')
 import parkBg from '@/assets/park.jpg'
 import templeBg from '@/assets/temple.png'
 import seaBg from '@/assets/sea.jpg'
+import korenBg from '@/assets/koren.jpg'
 
 const scene = ref('park')
 const currentBg = computed(() => ({
   park: parkBg,
   temple: templeBg,
-  sea: seaBg
+  sea: seaBg,
+  koren: korenBg
 }[scene.value]))
 
 /* ===== 人物 ===== */
@@ -143,6 +181,9 @@ function onDialogRight() {
   } else if (dialogState.value === 'temple') {
     scene.value = 'sea'
     dialogState.value = 'sea'
+  } else if (dialogState.value === 'koren') {
+    scene.value = 'koren'
+    dialogState.value = 'koren'
   } else if (dialogState.value === 'sea') {
     dialogState.value = 'exit1'
   }
@@ -152,7 +193,7 @@ function onDialogRight() {
 }
 
 function onDialogLeft() {
-  if (dialogState.value === 'park') dialogState.value = 'exit1'
+  dialogState.value = 'exit1'
 }
 
 /* ===== 鍵盤（桌機用） ===== */
@@ -165,7 +206,17 @@ function onKeyUp(e) {
   if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') moveDir.value = 0
 }
 
-onMounted(() => {
+function preload(url) {
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.onload = resolve
+    img.onerror = resolve
+    img.src = url
+  })
+}
+
+onMounted(async () => {
+  await preload(currentBg.value)
   resetPlayers()
   loop()
   window.addEventListener('keydown', onKeyDown)
