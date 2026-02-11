@@ -172,7 +172,7 @@ function loop() {
 /* ===== Dialog 行為 ===== */
 function onDialogRight() {
   showDialog.value = false
-  canTriggerHit.value = true
+  canTriggerHit.value = ref(false)
 
 
 
@@ -197,12 +197,7 @@ function onDialogLeft() {
   dialogState.value = 'exit1'
 }
 
-/* ===== 鍵盤（桌機用） ===== */
-function onKeyDown(e) {
-  if (showDialog.value || !parkVisible.value) return
-  if (e.key === 'ArrowLeft') moveDir.value = -1
-  if (e.key === 'ArrowRight') moveDir.value = 1
-}
+
 function onKeyUp(e) {
   if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') moveDir.value = 0
 }
