@@ -303,11 +303,14 @@ onBeforeUnmount(() => {
 
 /* 背景只顯示，不吃點擊 */
 .scene{
+  position: fixed;   /* 必須有 */
+  inset: 0;          /* 撐滿畫面 */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center bottom;
-   z-index: -1;
+  z-index: 0;
 }
+
 .char{
   position: absolute;
   pointer-events: none;
