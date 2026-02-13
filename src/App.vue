@@ -1,9 +1,12 @@
 <template>
   <div class="app">
     <!-- 背景 -->
-    <div class="scene" :style="{ backgroundImage: `url(${currentBg})` }"></div>
+    <!-- <div class="scene" :style="{ backgroundImage: `url(${currentBg})` }"></div> -->
 
-    <!-- 人物 -->
+<div
+  class="scene"
+  :style="{ backgroundImage: `url(${currentBg?.default || currentBg})` }"
+></div>    <!-- 人物 -->
     <img
       v-if="parkVisible"
       class="char"
