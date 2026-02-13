@@ -46,7 +46,7 @@ import Controls from './Controls.vue'
 const dialogState = ref('intro')
 const showDialog = ref(true)
 const parkVisible = ref(false)
-
+console.log(currentBg.value)
 
 const DIALOG_TEXT = {
   intro: `嗨!周小寶,今天是難得的情人節,
