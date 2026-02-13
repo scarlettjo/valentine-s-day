@@ -133,7 +133,10 @@ const p2 = ref({ x: 0, y: 0 })
 function resetPlayers() {
   const y = window.innerHeight - CHAR_H - 20
   p1.value = { x: window.innerWidth * 0.1, y }
-  p2.value = { x: window.innerWidth * 0.7, y }
+   p2.value = { 
+    x: (window.innerWidth - CHAR_W) / 2,  // 正中間
+    y 
+  }
 }
 
 const styleOf = (p) => ({
