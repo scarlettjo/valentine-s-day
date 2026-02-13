@@ -38,6 +38,7 @@
 </template>
 
 <script setup>
+  
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import DialogBox from './DialogBox.vue'
 import Controls from './Controls.vue'
@@ -46,7 +47,7 @@ import Controls from './Controls.vue'
 const dialogState = ref('intro')
 const showDialog = ref(true)
 const parkVisible = ref(false)
-console.log(currentBg.value)
+console.log('app start')
 
 const DIALOG_TEXT = {
   intro: `嗨!周小寶,今天是難得的情人節,
