@@ -207,7 +207,7 @@ const styleOf = (p) => ({
 /* ===== 移動 ===== */
 const moveDir = ref(0)
 const speed = 4
-const canTriggerHit = ref(false)
+const canTriggerHit = ref(true)
 function loop() {
   if (!showDialog.value && parkVisible.value) {
     p1.value.x += moveDir.value * speed
@@ -303,10 +303,11 @@ onBeforeUnmount(() => {
 
 /* 背景只顯示，不吃點擊 */
 .scene{
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center bottom;
 
+ 
 }
 .char{
   position: absolute;
