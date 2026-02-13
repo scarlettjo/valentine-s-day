@@ -170,13 +170,19 @@ import korenBg from '@/assets/koren.jpg'
 import tainanBg from '@/assets/tainan.jpg'
 
 const scene = ref('park')
-const currentBg = computed(() => ({
-  park: parkBg,
-  temple: templeBg,
-  sea: seaBg,
-  koren: korenBg,
-  tainan: tainanBg
-}[scene.value]))
+const currentBg = computed(() => {
+  const map = {
+    park: parkBg,
+    temple: templeBg,
+    sea: seaBg,
+    koren: korenBg,
+    tainan: tainanBg
+  }
+
+  const bg = map[scene.value]
+  return bg?.default ?? bg
+})
+
 
 /* ===== 人物 ===== */
 import boySrc from '@/assets/firstboy.png'
