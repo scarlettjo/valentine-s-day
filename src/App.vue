@@ -273,12 +273,10 @@ onMounted(async () => {
   await preload(currentBg.value)
   resetPlayers()
   loop()
-  window.addEventListener('keydown', onKeyDown)
-  window.addEventListener('keyup', onKeyUp)
+
 })
 onBeforeUnmount(() => {
-  window.removeEventListener('keydown', onKeyDown)
-  window.removeEventListener('keyup', onKeyUp)
+
 })
 </script>
 
