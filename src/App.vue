@@ -256,9 +256,9 @@ function onDialogLeft() {
 }
 
 
-function onKeyUp(e) {
-  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') moveDir.value = 0
-}
+// function onKeyUp(e) {
+//   if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') moveDir.value = 0
+// }
 
 function preload(url) {
   return new Promise((resolve) => {
