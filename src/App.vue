@@ -1,12 +1,14 @@
 <template>
   <div class="app">
     <!-- 背景 -->
-    <!-- <div class="scene" :style="{ backgroundImage: `url(${currentBg})` }"></div> -->
-
-<div
+    <div
   class="scene"
-  :style="{ backgroundImage: `url(${currentBg?.default || currentBg})` }"
-></div>    <!-- 人物 -->
+  :style="{
+    backgroundImage: currentBg ? `url(${currentBg})` : 'none'
+  }"
+  />
+
+    <!-- 人物 -->
     <img
       v-if="parkVisible"
       class="char"
@@ -205,7 +207,7 @@ const styleOf = (p) => ({
 /* ===== 移動 ===== */
 const moveDir = ref(0)
 const speed = 4
-const canTriggerHit = ref(true)
+const canTriggerHit = ref(false)
 function loop() {
   if (!showDialog.value && parkVisible.value) {
     p1.value.x += moveDir.value * speed
@@ -304,6 +306,7 @@ onBeforeUnmount(() => {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center bottom;
+   z-index: -1;
 }
 .char{
   position: absolute;
